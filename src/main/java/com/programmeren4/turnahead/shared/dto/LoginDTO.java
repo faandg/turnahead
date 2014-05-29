@@ -36,14 +36,6 @@ public class LoginDTO implements Serializable {
 		this.password = password;
 	}
 
-	// @Override
-	// public int hashCode() {
-	// final int prime = 31;
-	// int result = 1;
-	// result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-	// return result;
-	// }
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -53,9 +45,9 @@ public class LoginDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		LoginDTO object = (LoginDTO) obj;
-		if (this.getEMail() != object.getEMail())
+		if (!this.getEMail().equals(object.getEMail()))
 			return false;
-		if (this.getPassword() != object.getPassword())
+		if (!this.getPassword().equals(object.getPassword()))
 			return false;
 		return true;
 	}

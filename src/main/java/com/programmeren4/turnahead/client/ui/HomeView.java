@@ -7,6 +7,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -46,12 +47,12 @@ public class HomeView extends Composite {
 
 	@UiHandler("buttonAanmelden")
 	void onClickLogin(ClickEvent e) {
-		new LoginController();
+		History.newItem("login");
 	}
 
 	@UiHandler("buttonRegisteren")
 	void onClickRegister(ClickEvent e) {
-		new RegistrationController();
+		History.newItem("registers");
 	}
 
 	@UiHandler("buttonMakeUser")

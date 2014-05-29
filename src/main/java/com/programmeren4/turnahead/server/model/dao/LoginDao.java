@@ -28,12 +28,10 @@ public class LoginDao {
 			if (rs.next()) {
 				LoginReturn = new LoginDTO();
 				LoginReturn.setEMail(rs.getString("EMAIL"));
-				LoginReturn.setPassword(rs.getString("PASSWORD"));
-				System.out.println("email uit db    : "+ rs.getString("EMAIL"));
-				System.out.println("paswoord uit db : "+ rs.getString("PASSWORD"));			
+				LoginReturn.setPassword(rs.getString("PASSWORD"));	
 			}
 			else 
-				System.out.println("Error: no result in resultset");
+				System.out.println("Error: no user/password combination in DB");
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
