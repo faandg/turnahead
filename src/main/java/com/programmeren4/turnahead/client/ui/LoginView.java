@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
@@ -18,8 +19,10 @@ import com.programmeren4.turnahead.shared.dto.LoginDTO;
 
 public class LoginView extends Composite {
 
-	private static LoginViewUiBinder uiBinder = GWT.create(LoginViewUiBinder.class);
+	private static LoginViewUiBinder uiBinder = GWT
+			.create(LoginViewUiBinder.class);
 	LoginServiceAsync LoginAsync;
+	public static Long IngelogdID;
 
 	interface LoginViewUiBinder extends UiBinder<Widget, LoginView> {
 	}
@@ -45,22 +48,24 @@ public class LoginView extends Composite {
 	@UiHandler("inloggen")
 	void onClickButtonInloggen(ClickEvent e) {
 
-		AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
-			
+		AsyncCallback<Long> callback = new AsyncCallback<Long>() {
+
 			@Override
-			public void onSuccess(Boolean result) {
-				new Overview();
+			public void onSuccess(Long result) {
+				if (result != null) {
+//					System.out.println("Async callback result: "+result.toString());
+					LoginView.IngelogdID = result;
+					History.newItem("overview");
+				} else {
+					Window.alert("User/Password combination does not exist! Please try again...");
+				}
 			}
 
 			@Override
 			public void onFailure(Throwable caught) {
-//				Window.alert(caught.getMessage());
-//				caught.printStackTrace();
-				Window.alert("Try again loser!");
+				Window.alert("Damn the whole thing crashed");
 			}
 		};
-		
-		//LoginAsync.Login(new LoginDTO("WARD.PEER@HOTMAIL.COM", "programmeren4"), callback);
 		LoginAsync.Login(new LoginDTO(user.getText(), pass.getText()), callback);
 	}
 

@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -22,6 +23,7 @@ public class FormOverview extends Composite {
 
 	public FormOverview() {
 		initWidget(uiBinder.createAndBindUi(this));
+		setUserID();
 	}
 
 	public FormOverview(String firstName) {
@@ -31,6 +33,8 @@ public class FormOverview extends Composite {
 	}
 	
 	// ui field herhalen
+	@UiField
+	Label labelUserID;
 	@UiField
 	Button terugKnop;
 	@UiField
@@ -49,7 +53,9 @@ public class FormOverview extends Composite {
 	 * email; Label geboortedatum; VerticalPanel persoonsGegevensLabel;
 	 */
 
-
+	private void setUserID(){
+		labelUserID.setText("Welkom, uw userID is : "+LoginView.IngelogdID.toString());
+	}
 
 //	// userdatapanel-------------------------------------------------------------------------
 //	// data uit databank halen voor persoonsgegevens

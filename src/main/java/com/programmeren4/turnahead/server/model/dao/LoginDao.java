@@ -23,17 +23,16 @@ public class LoginDao {
 		try {
 			DBConnector.getInstance().init();
 			this.conn = DBConnector.getInstance().getConn();
-			sql = "SELECT * FROM programmeren4.USER WHERE EMAIL='"+login.getEMail()+"'";
+			sql = "SELECT * FROM programmeren4.USER WHERE EMAIL='"
+					+ login.getEMail() + "'";
 			rs = this.conn.createStatement().executeQuery(sql);
 			if (rs.next()) {
 				LoginReturn = new LoginDTO();
 				LoginReturn.setEMail(rs.getString("EMAIL"));
 				LoginReturn.setPassword(rs.getString("PASSWORD"));
-				System.out.println("email uit db    : "+ rs.getString("EMAIL"));
-				System.out.println("paswoord uit db : "+ rs.getString("PASSWORD"));			
-			}
-			else 
-				System.out.println("Error: no result in resultset");
+				LoginReturn.setID(rs.getLong("USERID"));
+			} else
+				System.out.println("Error: no user/password combination in DB");
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {

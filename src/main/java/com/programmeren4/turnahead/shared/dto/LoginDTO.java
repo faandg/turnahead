@@ -10,6 +10,7 @@ public class LoginDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String email;
 	private String password;
+	private Long ID;
 
 	public LoginDTO() {
 		super();
@@ -35,14 +36,14 @@ public class LoginDTO implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public Long getID() {
+		return ID;
+	}
 
-	// @Override
-	// public int hashCode() {
-	// final int prime = 31;
-	// int result = 1;
-	// result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-	// return result;
-	// }
+	public void setID(Long ID) {
+		this.ID = ID;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -53,9 +54,9 @@ public class LoginDTO implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		LoginDTO object = (LoginDTO) obj;
-		if (this.getEMail() != object.getEMail())
+		if (!this.getEMail().equals(object.getEMail()))
 			return false;
-		if (this.getPassword() != object.getPassword())
+		if (!this.getPassword().equals(object.getPassword()))
 			return false;
 		return true;
 	}

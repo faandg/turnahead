@@ -7,6 +7,8 @@
 	}
 	</ui:style>
 	<g:HTMLPanel>
+		<g:Label text="userID" styleName="{style.important}" ui:field="labelUserID" />
+
 		<g:VerticalPanel styleName="{style.important}"
 			ui:field="userDataPanel">
 			<g:Button text="aanpassen" styleName="{style.important}"
