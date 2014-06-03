@@ -25,6 +25,11 @@ public class DBConnector {
 	public static synchronized DBConnector getInstance() {
 		if (_instance == null) {
 			_instance = new DBConnector();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 		return _instance;
 	}
