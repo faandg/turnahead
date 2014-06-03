@@ -6,50 +6,63 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
+import com.programmeren4.turnahead.client.services.KarakterDataService;
+import com.programmeren4.turnahead.client.services.KarakterDataServiceAsync;
+import com.programmeren4.turnahead.client.services.UserDataService;
+import com.programmeren4.turnahead.client.services.UserDataServiceAsync;
+import com.programmeren4.turnahead.shared.dto.KarakterDTO;
+import com.programmeren4.turnahead.shared.dto.UserDataDTO;
 
 public class FormMakeChar extends Composite {
 
 	private static CharAanmakenUiBinder uiBinder = GWT
 			.create(CharAanmakenUiBinder.class);
+	KarakterDataServiceAsync KarakterDataAsync;
 
 	interface CharAanmakenUiBinder extends UiBinder<Widget, FormMakeChar> {
 	}
 
 	public FormMakeChar() {
 		initWidget(uiBinder.createAndBindUi(this));
+		KarakterDataAsync = GWT.create(KarakterDataService.class);
 	}
 
 	@UiField
 	Button OKbutton;
+	@UiField
 	Button cancelButton;
+	@UiField
 	TextBox name;
-	TextBox geslacht;
-
-//	@UiHandler("naam")
-//	public String getName() {
-//		// naam return die in textbox in ingegeven
-//		return name.getText();
-//
-//	}
-//
-//	public String getGeslacht() {
-//		// return geslacht dat in textbox geslacht is ingevuld
-//		return geslacht.getText();
-//
-//	}
+	@UiField
+	TextBox currentLocation;
+	@UiField
+	TextBox userId;
+	@UiField
+	TextBox locationId;
 
 	@UiHandler("OKbutton")
 	void onClickOKknop(ClickEvent e) {
-		//name.getText();
-		// char wordt toegevoegd aan databankwindow
-		Window.alert("char toegevoegd aan databank");
-		// char toevoegen aan databank
+		AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+			@Override
+			public void onSuccess(Boolean result) {
+				Window.alert("Karakter toegevoegd aan de DB");
+				new LoginController();
+			}
 
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Karakter niet toegevoegd :(");
+			}
+
+		};
+		KarakterDataAsync.addKarakterData(new KarakterDTO(name.getText(), currentLocation.getText(),
+				Long.parseLong(userId.getText(), 10), Long.parseLong(locationId.getText(), 10)), callback);
 	}
 
 	@UiHandler("cancelButton")

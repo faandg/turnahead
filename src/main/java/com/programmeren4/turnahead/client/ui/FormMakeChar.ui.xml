@@ -8,10 +8,18 @@
 	</ui:style>
 	<g:HTMLPanel>
 		<g:VerticalPanel styleName= "{style.important}" ui:field="charPanel">
-		    <g:TextBox text="typ naam:" styleName= "{style.important}" ui:field="naam"></g:TextBox>
-		    <g:TextBox text="typ geslacht(M/V):" styleName= "{style.important}" ui:field="geslacht"></g:TextBox>
+			<g:Label>Naam:</g:Label>
+		    <g:TextBox styleName= "{style.important}" ui:field="name"></g:TextBox>
+		    <g:Label>CurrentLocation:</g:Label>
+		    <g:TextBox styleName= "{style.important}" ui:field="currentLocation"></g:TextBox>
+		    <g:Label>UserID:</g:Label>
+		    <g:TextBox styleName= "{style.important}" ui:field="userId"></g:TextBox>
+		    <g:Label>LocationID:</g:Label>
+		    <g:TextBox styleName= "{style.important}" ui:field="locationId"></g:TextBox>
 		</g:VerticalPanel>
 		<g:Button text="OK" styleName="{style.important}" ui:field="OKbutton" />
 		<g:Button text="cancel" styleName="{style.important}" ui:field="cancelButton" />
 	</g:HTMLPanel>
 </ui:UiBinder> 
+
+
