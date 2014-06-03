@@ -58,6 +58,8 @@ public class FormMakeChar extends Composite {
 			@Override
 			public void onFailure(Throwable caught) {
 				Window.alert("Karakter niet toegevoegd :(");
+				caught.printStackTrace();
+				
 			}
 
 		};

@@ -1,7 +1,6 @@
 package com.programmeren4.turnahead.client.ui;
 
 import com.google.gwt.user.client.ui.RootPanel;
-import com.programmeren4.turnahead.server.LoginServiceImpl;
 
 public class Overview {
 
