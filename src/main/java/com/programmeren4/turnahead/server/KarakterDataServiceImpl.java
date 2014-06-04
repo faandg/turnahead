@@ -46,12 +46,18 @@ public class KarakterDataServiceImpl extends RemoteServiceServlet implements Kar
 		try {
 			charList.addAll(charDataDao.getKaraktersOfUserId(userID));
 			if (charList.isEmpty()){
-				System.out.println("The returned arraylist is empty");
+				System.out.println("The returned arraylist for user "+ userID+" is empty");
 			}
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}
 		return charList;
+	}
+
+	@Override
+	public boolean deleteKarakterData(String name) {
+		
+		return true;
 	}
 			
 			

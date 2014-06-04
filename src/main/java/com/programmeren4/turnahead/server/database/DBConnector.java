@@ -54,6 +54,7 @@ public class DBConnector {
 	public void closeConn() {
 		try {
 			getConn().close();
+			System.out.println("Connection Closed");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

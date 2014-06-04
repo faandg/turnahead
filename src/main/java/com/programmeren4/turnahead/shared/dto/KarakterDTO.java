@@ -49,6 +49,11 @@ public class KarakterDTO implements Serializable {
 		this.userId = userId;
 		this.locationId = locationId;
 	}
+	
+	public KarakterDTO(String karakterName, Long userId) {
+		this.karakterName = karakterName;
+		this.userId = userId;
+	}
 
 	public KarakterDTO() {
 		super();

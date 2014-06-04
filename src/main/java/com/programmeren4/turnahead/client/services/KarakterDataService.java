@@ -11,5 +11,6 @@ public interface KarakterDataService extends RemoteService{
 		public boolean addKarakterData(KarakterDTO karakterDataDTO);
 		public List<KarakterDTO> getKarakters();
 		public List<KarakterDTO> getKaraktersOfUserId(Long userID);
+		public boolean deleteKarakterData(String name);
 	
 }

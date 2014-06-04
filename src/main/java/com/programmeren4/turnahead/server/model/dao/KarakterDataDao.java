@@ -113,19 +113,24 @@ public class KarakterDataDao {
 	/**
 	 * Karakter verwijderen (DELETE)
 	 */
-	public void deleteKarakterData(KarakterDTO karakterData)
+	public void deleteKarakterData(String characterName)
 			throws DAOException {
-
+		ResultSet rs = null;
 		try {
 			DBConnector.getInstance().init();
 			this.conn = DBConnector.getInstance().getConn();
-			sql = "DELETE FROM programmeren4.KARAKTER WHERE CHARACTERID=" + karakterData.getKarakterId();
+			System.out.println("Fetching charID for charname " +  characterName);
+			sql = "SELECT * FROM programmeren4.KARAKTER WHERE CHARACTERNAME=" + characterName;
+			rs = conn.createStatement().executeQuery(sql);
+			System.out.println("deleting character with characterid" + rs.getLong("CHARACTERID"));
+			sql = "DELETE FROM programmeren4.KARAKTER WHERE CHARACTERID=" + rs.getLong("CHARACTERID");
 			conn.createStatement().executeUpdate(sql);
 		} catch (SQLException se) {
 			se.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			DBConnector.close(rs);
 			DBConnector.getInstance().closeConn();
 		}
 	}
@@ -182,7 +187,7 @@ public class KarakterDataDao {
 		try {
 			DBConnector.getInstance().init();
 			this.conn = DBConnector.getInstance().getConn();
-			String query = "SELECT * FROM programmeren4.KARAKTER WHERE CHARACTERID="
+			String query = "SELECT * FROM programmeren4.KARAKTER WHERE USERID="
 					+ userID.toString();
 			rs = conn.createStatement().executeQuery(query);
 

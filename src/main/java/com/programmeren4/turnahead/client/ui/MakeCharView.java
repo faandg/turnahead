@@ -38,14 +38,10 @@ public class MakeCharView extends Composite {
 	Button cancelButton;
 	@UiField
 	TextBox name;
-	@UiField
-	TextBox currentLocation;
-	@UiField
-	TextBox locationId;
 
 	@UiHandler("OKbutton")
 	void onClickOKknop(ClickEvent e) {
-		System.out.println(name.getText()+" "+ currentLocation.getText()+" "+loggedInUserID.toString()+" "+locationId.getText());
+		System.out.println(name.getText()+" "+loggedInUserID.toString());
 		AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
 			@Override
 			public void onSuccess(Boolean result) {
@@ -65,8 +61,7 @@ public class MakeCharView extends Composite {
 		};
 		
 		try{
-			KarakterDataAsync.addKarakterData(new KarakterDTO(name.getText(), currentLocation.getText(),
-					loggedInUserID, Long.parseLong(locationId.getText(), 10)), callback);
+			KarakterDataAsync.addKarakterData(new KarakterDTO(name.getText(), loggedInUserID), callback);
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}

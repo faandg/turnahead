@@ -108,7 +108,8 @@ public class FormOverview extends Composite {
 
 			@Override
 			public void onSuccess(List<KarakterDTO> result) {
-				if (result != null) {					
+				if (result != null) {	
+					characterlist.clear();
 					for (KarakterDTO dto : result){
 						characterlist.addItem(dto.getKarakterName());
 					}
@@ -135,8 +136,34 @@ public class FormOverview extends Composite {
 	@UiHandler("verwijderCharKnop")
 	// het karakter wordt verwijderd in de databank
 	void onClickVerwijderen(ClickEvent e) {
-		// deleteChar();
+		AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+
+			
+			@Override
+			public void onSuccess(Boolean arg0) {
+				Window.alert("Character deleted succesfully, please refresh with button");
+				characterlist.clear();
+				
+			}
+			@Override
+			public void onFailure(Throwable arg0) {
+				Window.alert("Character deletion failed");
+				
+			}
+
+		};
+
+			System.out.println("Removing user " + characterlist.getItemText(characterlist.getSelectedIndex()));
+		karakterDataAsync.deleteKarakterData(characterlist.getItemText(characterlist.getSelectedIndex()), callback);
 	}
+		 
+		//(new LoginDTO(user.getText(), pass.getText()), callback);
+		
+		
+		
+		
+		
+	
 
 	// ----------------------------------------------------------------------------------------
 
