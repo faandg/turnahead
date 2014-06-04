@@ -14,10 +14,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.programmeren4.turnahead.client.services.KarakterDataService;
 import com.programmeren4.turnahead.client.services.KarakterDataServiceAsync;
-import com.programmeren4.turnahead.client.services.UserDataService;
-import com.programmeren4.turnahead.client.services.UserDataServiceAsync;
 import com.programmeren4.turnahead.shared.dto.KarakterDTO;
-import com.programmeren4.turnahead.shared.dto.UserDataDTO;
 
 public class FormMakeChar extends Composite {
 
@@ -52,7 +49,7 @@ public class FormMakeChar extends Composite {
 			@Override
 			public void onSuccess(Boolean result) {
 				Window.alert("Karakter toegevoegd aan de DB");
-				new LoginController();
+				new OverviewController();
 			}
 
 			@Override
@@ -65,8 +62,15 @@ public class FormMakeChar extends Composite {
 			}
 
 		};
-		KarakterDataAsync.addKarakterData(new KarakterDTO(name.getText(), currentLocation.getText(),
-				Long.parseLong(userId.getText(), 10), Long.parseLong(locationId.getText(), 10)), callback);
+		System.out.println(name.getText()+" "+ currentLocation.getText()+" "+userId.getText()+" "+locationId.getText());
+		try{
+			KarakterDataAsync.addKarakterData(new KarakterDTO(name.getText(), currentLocation.getText(),
+					Long.parseLong(userId.getText(), 10), Long.parseLong(locationId.getText(), 10)), callback);
+		} catch (Exception ex){
+			ex.printStackTrace();
+		}
+		
+		
 	}
 
 	@UiHandler("cancelButton")
