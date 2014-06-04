@@ -21,13 +21,15 @@ public class MakeCharView extends Composite {
 	private static CharAanmakenUiBinder uiBinder = GWT
 			.create(CharAanmakenUiBinder.class);
 	KarakterDataServiceAsync KarakterDataAsync;
-
+	private Long loggedInUserID;
+	
 	interface CharAanmakenUiBinder extends UiBinder<Widget, MakeCharView> {
 	}
 
-	public MakeCharView() {
+	public MakeCharView(Long ingelogdID) {
 		initWidget(uiBinder.createAndBindUi(this));
 		KarakterDataAsync = GWT.create(KarakterDataService.class);
+		this.loggedInUserID=ingelogdID;
 	}
 
 	@UiField
@@ -39,13 +41,11 @@ public class MakeCharView extends Composite {
 	@UiField
 	TextBox currentLocation;
 	@UiField
-	TextBox userId;
-	@UiField
 	TextBox locationId;
 
 	@UiHandler("OKbutton")
 	void onClickOKknop(ClickEvent e) {
-		System.out.println(name.getText()+" "+ currentLocation.getText()+" "+userId.getText()+" "+locationId.getText());
+		System.out.println(name.getText()+" "+ currentLocation.getText()+" "+loggedInUserID.toString()+" "+locationId.getText());
 		AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
 			@Override
 			public void onSuccess(Boolean result) {
@@ -66,7 +66,7 @@ public class MakeCharView extends Composite {
 		
 		try{
 			KarakterDataAsync.addKarakterData(new KarakterDTO(name.getText(), currentLocation.getText(),
-					Long.parseLong(userId.getText(), 10), Long.parseLong(locationId.getText(), 10)), callback);
+					loggedInUserID, Long.parseLong(locationId.getText(), 10)), callback);
 		} catch (Exception ex){
 			ex.printStackTrace();
 		}

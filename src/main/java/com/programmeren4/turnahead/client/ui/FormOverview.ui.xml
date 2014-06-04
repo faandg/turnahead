@@ -8,6 +8,9 @@
 	</ui:style>
 	<g:HTMLPanel>
 		<g:Label text="userID" styleName="{style.important}" ui:field="labelUserID" />
+		<g:Button text="getCharacters" styleName="{style.important}"
+				ui:field="getcharacters" />
+		<g:ListBox ui:field="characterlist" />
 
 		<g:VerticalPanel styleName="{style.important}"
 			ui:field="userDataPanel">

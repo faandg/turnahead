@@ -12,8 +12,6 @@
 		    <g:TextBox styleName= "{style.important}" ui:field="name"></g:TextBox>
 		    <g:Label>CurrentLocation:</g:Label>
 		    <g:TextBox styleName= "{style.important}" ui:field="currentLocation"></g:TextBox>
-		    <g:Label>UserID:</g:Label>
-		    <g:TextBox styleName= "{style.important}" ui:field="userId"></g:TextBox>
 		    <g:Label>LocationID:</g:Label>
 		    <g:TextBox styleName= "{style.important}" ui:field="locationId"></g:TextBox>
 		</g:VerticalPanel>

@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.programmeren4.turnahead.client.services.KarakterDataService;
+import com.programmeren4.turnahead.client.ui.LoginView;
 import com.programmeren4.turnahead.server.model.dao.KarakterDataDao;
 import com.programmeren4.turnahead.shared.dto.KarakterDTO;
 import com.programmeren4.turnahead.shared.exception.DAOException;
@@ -30,6 +31,20 @@ public class KarakterDataServiceImpl extends RemoteServiceServlet implements Kar
 		List<KarakterDTO> charList = new ArrayList<KarakterDTO>();
 		try {
 			charList.addAll(charDataDao.getKarakters());
+			if (charList.isEmpty()){
+				System.out.println("The returned arraylist is empty");
+			}
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		return charList;
+	}
+
+	@Override
+	public List<KarakterDTO> getKaraktersOfUserId(Long userID) {
+		List<KarakterDTO> charList = new ArrayList<KarakterDTO>();
+		try {
+			charList.addAll(charDataDao.getKaraktersOfUserId(userID));
 			if (charList.isEmpty()){
 				System.out.println("The returned arraylist is empty");
 			}

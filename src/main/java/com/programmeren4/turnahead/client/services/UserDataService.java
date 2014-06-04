@@ -11,6 +11,5 @@ import com.programmeren4.turnahead.shared.dto.UserDataDTO;
 @RemoteServiceRelativePath("userservice")
 public interface UserDataService extends RemoteService {
 	public boolean createUser(UserDataDTO userDataDTO);
-
 	public List<UserDataDTO> getUserData();
 }

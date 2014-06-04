@@ -10,5 +10,6 @@ import com.programmeren4.turnahead.shared.dto.KarakterDTO;
 public interface KarakterDataService extends RemoteService{
 		public boolean addKarakterData(KarakterDTO karakterDataDTO);
 		public List<KarakterDTO> getKarakters();
+		public List<KarakterDTO> getKaraktersOfUserId(Long userID);
 	
 }

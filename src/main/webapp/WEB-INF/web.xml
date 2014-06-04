@@ -11,6 +11,10 @@
 		<servlet-name>loginservice</servlet-name>
 		<servlet-class>com.programmeren4.turnahead.server.LoginServiceImpl</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>karakterdataservice</servlet-name>
+		<servlet-class>com.programmeren4.turnahead.server.KarakterDataServiceImpl</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>userservice</servlet-name>
@@ -19,5 +23,9 @@
 	<servlet-mapping>
 		<servlet-name>loginservice</servlet-name>
 		<url-pattern>/home/loginservice</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>karakterdataservice</servlet-name>
+		<url-pattern>/home/karakterdataservice</url-pattern>
 	</servlet-mapping>
 </web-app>

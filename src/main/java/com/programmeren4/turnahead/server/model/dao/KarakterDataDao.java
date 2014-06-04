@@ -173,7 +173,7 @@ public class KarakterDataDao {
 	/**
 	 * LIST BY USER - Lijst van alle karakters voor één UserId
 	 */
-	public List<KarakterDTO> getKaraktersOfUserId(KarakterDTO karakterData)
+	public List<KarakterDTO> getKaraktersOfUserId(Long userID)
 			throws DAOException {
 		List<KarakterDTO> list = new ArrayList<KarakterDTO>();
 		KarakterDTO karakterReturn = null;
@@ -183,7 +183,7 @@ public class KarakterDataDao {
 			DBConnector.getInstance().init();
 			this.conn = DBConnector.getInstance().getConn();
 			String query = "SELECT * FROM programmeren4.KARAKTER WHERE CHARACTERID="
-					+ karakterData.getUserId();
+					+ userID.toString();
 			rs = conn.createStatement().executeQuery(query);
 
 			while (rs.next()) {
