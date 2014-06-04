@@ -16,16 +16,16 @@ import com.programmeren4.turnahead.client.services.KarakterDataService;
 import com.programmeren4.turnahead.client.services.KarakterDataServiceAsync;
 import com.programmeren4.turnahead.shared.dto.KarakterDTO;
 
-public class FormMakeChar extends Composite {
+public class MakeCharView extends Composite {
 
 	private static CharAanmakenUiBinder uiBinder = GWT
 			.create(CharAanmakenUiBinder.class);
 	KarakterDataServiceAsync KarakterDataAsync;
 
-	interface CharAanmakenUiBinder extends UiBinder<Widget, FormMakeChar> {
+	interface CharAanmakenUiBinder extends UiBinder<Widget, MakeCharView> {
 	}
 
-	public FormMakeChar() {
+	public MakeCharView() {
 		initWidget(uiBinder.createAndBindUi(this));
 		KarakterDataAsync = GWT.create(KarakterDataService.class);
 	}
@@ -45,6 +45,7 @@ public class FormMakeChar extends Composite {
 
 	@UiHandler("OKbutton")
 	void onClickOKknop(ClickEvent e) {
+		System.out.println(name.getText()+" "+ currentLocation.getText()+" "+userId.getText()+" "+locationId.getText());
 		AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
 			@Override
 			public void onSuccess(Boolean result) {
@@ -62,7 +63,7 @@ public class FormMakeChar extends Composite {
 			}
 
 		};
-		System.out.println(name.getText()+" "+ currentLocation.getText()+" "+userId.getText()+" "+locationId.getText());
+		
 		try{
 			KarakterDataAsync.addKarakterData(new KarakterDTO(name.getText(), currentLocation.getText(),
 					Long.parseLong(userId.getText(), 10), Long.parseLong(locationId.getText(), 10)), callback);

@@ -34,10 +34,10 @@ public class HomeView extends Composite {
 	Button buttonAanmelden;
 	@UiField
 	Button buttonRegisteren;
-	@UiField
-	Button buttonMakeUser;
-	@UiField
-	Button buttonGetUser;
+	//@UiField
+	//Button buttonMakeUser;
+	//@UiField
+	//Button buttonGetUser;
 
 	public HomeView(String firstName) {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -55,56 +55,56 @@ public class HomeView extends Composite {
 		History.newItem("registers");
 	}
 
-	@UiHandler("buttonMakeUser")
-	void onClickMakeUser(ClickEvent e) {
-		AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
-
-			@Override
-			public void onSuccess(Boolean result) {
-				if (result) {
-					Window.alert("Saved");
-				}
-			}
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert(caught.getMessage());
-				caught.printStackTrace();
-
-			}
-		};
-		// move to appropriate form
-		// in textfields
-		userDataAsync.createUser(new UserDataDTO("Stefaan", "De Geyter",
-				"faandg@gmail.com", "tester"), callback);
-
-	}
-
-	@UiHandler("buttonGetUser")
-	void onClickGetUser(ClickEvent e) {
-		AsyncCallback<List<UserDataDTO>> callback = new AsyncCallback<List<UserDataDTO>>() {
-
-			@Override
-			public void onSuccess(List<UserDataDTO> result) {
-				// TODO check if list not empty
-				String msg = "Retrieved user with userID "
-						+ result.get(0).getUserId() + " succesfully!" + " - "
-						+ result.get(0).getFirstName() + " - "
-						+ result.get(0).getLastName() + " - "
-						+ result.get(0).getEMail() + " - "
-						+ result.get(0).getPassword();
-				Window.alert(msg);
-
-			}
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Failed to retrieve user list :(");
-
-			}
-
-		};
-		userDataAsync.getUserData(callback);
-
-	}
+//	@UiHandler("buttonMakeUser")
+//	void onClickMakeUser(ClickEvent e) {
+//		AsyncCallback<Boolean> callback = new AsyncCallback<Boolean>() {
+//
+//			@Override
+//			public void onSuccess(Boolean result) {
+//				if (result) {
+//					Window.alert("Saved");
+//				}
+//			}
+//
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				Window.alert(caught.getMessage());
+//				caught.printStackTrace();
+//
+//			}
+//		};
+//		// move to appropriate form
+//		// in textfields
+//		userDataAsync.createUser(new UserDataDTO("Stefaan", "De Geyter",
+//				"faandg@gmail.com", "tester"), callback);
+//
+//	}
+//
+//	@UiHandler("buttonGetUser")
+//	void onClickGetUser(ClickEvent e) {
+//		AsyncCallback<List<UserDataDTO>> callback = new AsyncCallback<List<UserDataDTO>>() {
+//
+//			@Override
+//			public void onSuccess(List<UserDataDTO> result) {
+//				// TODO check if list not empty
+//				String msg = "Retrieved user with userID "
+//						+ result.get(0).getUserId() + " succesfully!" + " - "
+//						+ result.get(0).getFirstName() + " - "
+//						+ result.get(0).getLastName() + " - "
+//						+ result.get(0).getEMail() + " - "
+//						+ result.get(0).getPassword();
+//				Window.alert(msg);
+//
+//			}
+//
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				Window.alert("Failed to retrieve user list :(");
+//
+//			}
+//
+//		};
+//		userDataAsync.getUserData(callback);
+//
+//	}
 }

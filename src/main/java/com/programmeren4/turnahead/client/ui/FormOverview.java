@@ -81,7 +81,7 @@ public class FormOverview extends Composite {
 	void onClickNieuw(ClickEvent e) {
 		// open nieuw scherm
 		// MakeNewChar;
-		FormMakeChar formChar = new FormMakeChar();
+		MakeCharView formChar = new MakeCharView();
 		RootPanel.get().clear();
 		RootPanel.get().add(formChar);
 	}
