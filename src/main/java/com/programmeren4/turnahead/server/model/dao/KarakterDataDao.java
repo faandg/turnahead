@@ -116,14 +116,27 @@ public class KarakterDataDao {
 	public void deleteKarakterData(String characterName)
 			throws DAOException {
 		ResultSet rs = null;
+		KarakterDTO karakterReturn = null;
 		try {
 			DBConnector.getInstance().init();
 			this.conn = DBConnector.getInstance().getConn();
 			System.out.println("Fetching charID for charname " +  characterName);
-			sql = "SELECT * FROM programmeren4.KARAKTER WHERE CHARACTERNAME=" + characterName;
+			sql = "SELECT * FROM programmeren4.KARAKTER WHERE CHARACTERNAME='" + characterName +"'";
 			rs = conn.createStatement().executeQuery(sql);
-			System.out.println("deleting character with characterid" + rs.getLong("CHARACTERID"));
-			sql = "DELETE FROM programmeren4.KARAKTER WHERE CHARACTERID=" + rs.getLong("CHARACTERID");
+				if (rs.next()) {
+					karakterReturn = new KarakterDTO();
+					karakterReturn.setKarakterId(rs.getLong("CHARACTERID"));
+					karakterReturn.setKarakterName(rs.getString("CHARACTERNAME"));
+					karakterReturn.setCurrentLocation(rs.getString("CURRENTLOCATION"));
+					karakterReturn.setUserId(rs.getLong("USERID"));
+					karakterReturn.setLocationId(rs.getLong("LOCATIONID"));
+				}
+				if (!rs.isBeforeFirst() ) {    
+					 System.out.println("No data"); 
+				} 
+			
+			System.out.println("deleting character with characterid" + karakterReturn.getKarakterId());
+			sql = "DELETE FROM programmeren4.KARAKTER WHERE CHARACTERID=" + karakterReturn.getKarakterId();
 			conn.createStatement().executeUpdate(sql);
 		} catch (SQLException se) {
 			se.printStackTrace();

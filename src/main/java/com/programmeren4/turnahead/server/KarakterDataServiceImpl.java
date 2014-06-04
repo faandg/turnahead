@@ -56,7 +56,11 @@ public class KarakterDataServiceImpl extends RemoteServiceServlet implements Kar
 
 	@Override
 	public boolean deleteKarakterData(String name) {
-		
+		try {
+			charDataDao.deleteKarakterData(name);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
 		return true;
 	}
 			
